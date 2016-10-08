@@ -68,6 +68,12 @@ namespace OdeToFood
                 });
             }
 
+            // static content delivery midleware
+            //app.UseDefaultFiles(); // includes index.html
+            //app.UseStaticFiles();
+            app.UseFileServer(); // combines default with static file handler
+
+
             // demo welcome page middleware
             app.UseWelcomePage(new WelcomePageOptions
             {
