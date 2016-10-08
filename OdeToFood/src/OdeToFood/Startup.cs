@@ -51,13 +51,30 @@ namespace OdeToFood
             ILoggerFactory loggerFactory,
             IGreeter greeter)
         {
+
+            // logging middleware
             loggerFactory.AddConsole();
 
+            // exception handler middleware
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
+            else
+            {
+                app.UseExceptionHandler(new ExceptionHandlerOptions
+                {
+                    ExceptionHandler = context => context.Response.WriteAsync("Oops")
+                });
+            }
 
+            // demo welcome page middleware
+            app.UseWelcomePage(new WelcomePageOptions
+            {
+                Path = "/welcome"
+            });
+
+            // app start
             app.Run(async (context) =>
             {
                 var message = greeter.GetGreeting(); //Configuration["Greeting"];
