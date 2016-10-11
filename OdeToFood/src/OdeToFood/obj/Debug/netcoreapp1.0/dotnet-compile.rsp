@@ -168,9 +168,11 @@
 --reference:C:\Users\Andrew\.nuget\packages\System.Xml.ReaderWriter\4.0.11\ref\netstandard1.3\System.Xml.ReaderWriter.dll
 --reference:C:\Users\Andrew\.nuget\packages\System.Xml.XDocument\4.0.11\ref\netstandard1.3\System.Xml.XDocument.dll
 --resource:"C:\Work\Repos\LearnAspNetCore\OdeToFood\src\OdeToFood\obj\Debug\netcoreapp1.0\OdeToFooddotnet-compile.deps.json",OdeToFood.deps.json
-C:\Work\Repos\LearnAspNetCore\OdeToFood\src\OdeToFood\Greeter.cs
 C:\Work\Repos\LearnAspNetCore\OdeToFood\src\OdeToFood\IGreeter.cs
 C:\Work\Repos\LearnAspNetCore\OdeToFood\src\OdeToFood\Program.cs
 C:\Work\Repos\LearnAspNetCore\OdeToFood\src\OdeToFood\Startup.cs
 C:\Work\Repos\LearnAspNetCore\OdeToFood\src\OdeToFood\Controllers\AboutController.cs
 C:\Work\Repos\LearnAspNetCore\OdeToFood\src\OdeToFood\Controllers\HomeController.cs
+C:\Work\Repos\LearnAspNetCore\OdeToFood\src\OdeToFood\Models\Restaurant.cs
+C:\Work\Repos\LearnAspNetCore\OdeToFood\src\OdeToFood\Services\Greeter.cs
+C:\Work\Repos\LearnAspNetCore\OdeToFood\src\OdeToFood\Services\RestaurantData.cs
