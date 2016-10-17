@@ -1,4 +1,4 @@
-﻿@model IEnumerable<OdeToFood.Models.Restaurant>
+﻿@model OdeToFood.ViewModels.HomePageVM
 
 <html>
 <head>
@@ -7,12 +7,13 @@
 
 <body>
     <h1>Restaurant list</h1>
+    <h3>@Model.CurrentMessage</h3>
     <table>
 
-        @foreach (var restaurant in Model)
+        @foreach (var restaurant in Model.Restaurants)
         {
             <tr>
-                <td>@restaurant.Id</td>
+                <td>@Html.ActionLink("View", "Detail", new { id = restaurant.Id })</td>
                 <td>@restaurant.Name</td>
             </tr>
         }
