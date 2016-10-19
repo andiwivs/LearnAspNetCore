@@ -9,18 +9,15 @@ namespace OdeToFood.Controllers
     {
 
         private IRestaurantData _restaurantData;
-        private IGreeter _greeter;
 
-        public HomeController(IRestaurantData restaurantData, IGreeter greeter)
+        public HomeController(IRestaurantData restaurantData)
         {
             _restaurantData = restaurantData;
-            _greeter = greeter;
         }
 
         public IActionResult Index()
         {
             var model = new HomePageVM {
-                CurrentMessage = _greeter.GetGreeting(),
                 Restaurants = _restaurantData.GetAll()
             };
 
@@ -32,9 +29,7 @@ namespace OdeToFood.Controllers
             var model = _restaurantData.Get(id);
 
             if (model == null)
-            {
                 return RedirectToAction(nameof(Index));
-            }
 
             return View(model);
         }
@@ -61,10 +56,46 @@ namespace OdeToFood.Controllers
 
                 newRestaurant = _restaurantData.Add(newRestaurant);
 
+                _restaurantData.Commit();
+
                 return RedirectToAction("Detail", new { id = newRestaurant.Id });
             }
 
             return View();
+        }
+
+        [HttpGet]
+        public IActionResult Edit(int id)
+        {
+            var model = _restaurantData.Get(id);
+
+            if (model == null)
+                return RedirectToAction(nameof(Index));
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public IActionResult Edit(int id, RestaurantEditVM model)
+        {
+
+            var restaurant = _restaurantData.Get(id);
+
+            if (restaurant == null)
+                return RedirectToAction(nameof(Index));
+
+            if (ModelState.IsValid)
+            {
+
+                restaurant.Name = model.Name;
+                restaurant.Cuisine = model.Cuisine;
+
+                _restaurantData.Commit();
+
+                return RedirectToAction(nameof(Detail), new { id = restaurant.Id });
+            }
+
+            return View(restaurant);
         }
     }
 }

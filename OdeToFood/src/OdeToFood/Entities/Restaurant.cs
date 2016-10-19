@@ -19,6 +19,7 @@ namespace OdeToFood.Entities
         [Display(Name = "Restaurant Name")]
         public string Name { get; set; }
 
+        [Required]
         public CuisineType Cuisine { get; set; }
     }
 }

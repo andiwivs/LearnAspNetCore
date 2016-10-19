@@ -19,7 +19,7 @@ namespace OdeToFood.Services
 
         public Greeter(IConfiguration config)
         {
-            _greeting = config["Greeting"];
+            _greeting = String.Format(config["Greeting"], DateTime.Now);
         }
 
         #endregion
