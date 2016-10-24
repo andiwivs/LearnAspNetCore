@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.Routing;
 using OdeToFood.Services;
 using OdeToFood.Entities;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace OdeToFood
 {
@@ -51,6 +52,7 @@ namespace OdeToFood
             services.AddSingleton<IGreeter, Greeter>();
 
             services.AddDbContext<OdeToFoodDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("Core")));
+            services.AddIdentity<User, IdentityRole>().AddEntityFrameworkStores<OdeToFoodDbContext>();
 
             // per-request services
             services.AddScoped<IRestaurantData, SqlRestaurantData>();
@@ -81,24 +83,10 @@ namespace OdeToFood
             }
 
             // static content delivery midleware
-            //app.UseDefaultFiles(); // includes index.html
-            //app.UseStaticFiles();
             app.UseFileServer(); // combines default with static file handler
 
-            /*
-            // demo welcome page middleware
-            app.UseWelcomePage(new WelcomePageOptions
-            {
-                Path = "/welcome"
-            });
-
-            // app start
-            app.Run(async (context) =>
-            {
-                var message = greeter.GetGreeting(); //Configuration["Greeting"];
-                await context.Response.WriteAsync(message);
-            });
-            */
+            // identity framework should be set ahead of MVC
+            app.UseIdentity();
 
             // MVC middleware
             app.UseMvc(ConfigureRoutes);
