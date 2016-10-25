@@ -208,6 +208,7 @@
 "C:\Work\Repos\LearnAspNetCore\OdeToFood\src\OdeToFood\Entities\OdeToFoodDbContext.cs"
 "C:\Work\Repos\LearnAspNetCore\OdeToFood\src\OdeToFood\Entities\Restaurant.cs"
 "C:\Work\Repos\LearnAspNetCore\OdeToFood\src\OdeToFood\Entities\User.cs"
+"C:\Work\Repos\LearnAspNetCore\OdeToFood\src\OdeToFood\Middleware\ApplicationBuilderExtensions.cs"
 "C:\Work\Repos\LearnAspNetCore\OdeToFood\src\OdeToFood\Migrations\20161018211255_InitialCreate.cs"
 "C:\Work\Repos\LearnAspNetCore\OdeToFood\src\OdeToFood\Migrations\20161018211255_InitialCreate.Designer.cs"
 "C:\Work\Repos\LearnAspNetCore\OdeToFood\src\OdeToFood\Migrations\20161020220923_Identity.cs"

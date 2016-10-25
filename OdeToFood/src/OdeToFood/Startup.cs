@@ -82,8 +82,11 @@ namespace OdeToFood
                 });
             }
 
-            // static content delivery midleware
+            // static content delivery middleware
             app.UseFileServer(); // combines default with static file handler
+
+            // custom middleware for node module content
+            app.UseNodeModules(env.ContentRootPath);
 
             // identity framework should be set ahead of MVC
             app.UseIdentity();
@@ -91,8 +94,8 @@ namespace OdeToFood
             // MVC middleware
             app.UseMvc(ConfigureRoutes);
 
-            // catch-all handler for unsupported routes
-            app.Run(ctx => ctx.Response.WriteAsync("Not found"));
+            // DEBUG: catch-all handler for unsupported routes
+            //app.Run(ctx => ctx.Response.WriteAsync("Not found"));
         }
 
         #endregion

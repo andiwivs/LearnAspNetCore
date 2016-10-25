@@ -4,20 +4,63 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title - OdeToFood</title>
+
+    <environment names="Development">
+        <link rel="stylesheet"
+              href="/node_modules/bootstrap/dist/css/bootstrap.css" />
+    </environment>
+
+    <environment names="Staging, Production">
+        <link rel="stylesheet"
+              href="http://ajax.aspnetcdn.com/ajax/bootstrap/3.3.6/css/bootstrap.min.css"
+              asp-fallback-href="/node_modules/bootstrap/dist/css/bootstrap.css"
+              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" />
+    </environment>
+
 </head>
 <body>
-    <div>
-        @await Component.InvokeAsync("LoginLogout")
-    </div>
-    <div>
+
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="/">OdeToFood</a>
+            </div>
+            <div class="navbar-right">
+                @await Component.InvokeAsync("LoginLogout")
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
         @RenderBody()
+        
+        <footer>
+            @RenderSection("footer", false)
+            @await Component.InvokeAsync("Greeting")
+            <hr />
+            &copy; AndersWeb @DateTime.Now.Year
+        </footer>
     </div>
-    <footer>
-        @RenderSection("footer", false)
-        @await Component.InvokeAsync("Greeting")
-        <hr />
-        &copy; AndersWeb @DateTime.Now.Year
-    </footer>
+
+    <environment names="Development">
+        <script src="/node_modules/jquery/dist/jquery.js"></script>
+        <script src="/node_modules/jquery-validation/dist/jquery.validate.js"></script>
+        <script src="/node_modules/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+    </environment>
+
+    <environment names="Staging, Production">
+        <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.1.0.min.js" 
+                asp-fallback-src="/node_modules/jquery/dist/jquery.js"
+                asp-fallback-test="window.jQuery"></script>
+
+        <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.15.1/jquery.validate.min.js"
+                asp-fallback-src="/node_modules/jquery-validation/dist/jquery.validate.js"
+                asp-fallback-test="window.jQuery && window.jQuery.validator"></script>
+
+        <script src="http://ajax.aspnetcdn.com/ajax/mvc/5.2.3/jquery.validate.unobtrusive.min.js"
+                asp-fallback-src="/node_modules/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"
+                asp-fallback-test="window.jQuery && window.jQuery.validator && window.jQuery.validator.unobtrusive"></script>
+    </environment>
 
     @RenderSection("Scripts", false)
 </body>
